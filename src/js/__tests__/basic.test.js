@@ -1,7 +1,7 @@
 import GameSaveLoader from "../GameSaveLoader";
 import GameSaving from "../gamesaving";
 test("show load data", async () => {
-  const result = new GameSaving({
+  const result = {
     id: 9,
     created: 1546300800,
     userInfo: {
@@ -10,7 +10,7 @@ test("show load data", async () => {
       level: 10,
       points: 2000,
     },
-  });
-
-  await expect(GameSaveLoader.load()).resolves.toEqual(result);
+  };
+  const saving = await GameSaveLoader.load();
+  expect(saving).resolves.toEqual(result);
 });
