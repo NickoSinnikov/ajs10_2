@@ -1,6 +1,7 @@
-import GameSaveLoader from "../app";
-test("show load data", () => {
-  const equalData = JSON.stringify({
+import GameSaveLoader from "../GameSaveLoader";
+import GameSaving from "../gamesaving";
+test("show load data", async () => {
+  const result = new GameSaving({
     id: 9,
     created: 1546300800,
     userInfo: {
@@ -11,7 +12,5 @@ test("show load data", () => {
     },
   });
 
-  GameSaveLoader.load().then((saving) => {
-    expect(saving).toEqual(equalData);
-  });
+  await expect(GameSaveLoader.load()).resolves.toEqual(result);
 });
